@@ -88,6 +88,21 @@ export default function App() {
       setLoading(false);
     }
   }
+  async function login() {
+  setAuthError("");
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    setAuthError(data?.message || `Login failed (${res.status})`);
+    return;
+  }
+  setToken(data?.token || data?.accessToken || "");
+}
+
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [token, setToken] = useState("");
