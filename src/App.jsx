@@ -92,6 +92,41 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [token, setToken] = useState("");
 const [authError, setAuthError] = useState("");
+  }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
+  const [authError, setAuthError] = useState("");
+
+  if (!token) {
+    return (
+      <div style={{ maxWidth: 400, margin: "80px auto", fontFamily: "system-ui" }}>
+        <h2>Login</h2>
+        <p>{apiBaseStatus}</p>
+
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ display: "block", width: "100%", marginBottom: 8 }}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ display: "block", width: "100%", marginBottom: 8 }}
+        />
+
+        <button onClick={login}>Log in</button>
+
+        {authError && <p style={{ color: "red" }}>{authError}</p>}
+      </div>
+    );
+  }
+
+  return (
 
   return (
     <div style={{ maxWidth: 900, margin: "40px auto", fontFamily: "system-ui" }}>
